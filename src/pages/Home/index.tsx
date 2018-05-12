@@ -33,7 +33,6 @@ class HomeComponent extends React.Component<Props, {}> {
   }
 
   render() {
-    console.log(this.props);
     const name = this.user && this.user.name || 'no user';
 
     return (

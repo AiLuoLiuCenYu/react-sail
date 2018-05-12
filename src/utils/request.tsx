@@ -1,3 +1,6 @@
+/**
+ * reference to   https://github.com/ant-design/ant-design-pro/blob/master/src/utils/request.js
+ */
 import axios, { AxiosRequestConfig } from 'axios';
 import { notification } from 'antd';
 // import rootStore from '../stores/RootStore';
@@ -22,11 +25,11 @@ const codeMessage = {
 
 /**
  * Requests a URL, returning a promise.
- *
+ * @param  {string} url       The URL we want to request
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {any}           An object containing either "data" or "err"
  */
-const request = async (options: AxiosRequestConfig): Promise<any> => {
+const request = async (url: string, options: AxiosRequestConfig = {}): Promise<any> => {
   const storageCredential = localStorage.getItem('credentials');
   const credentials = storageCredential ? JSON.parse(storageCredential) : null;
 
@@ -36,13 +39,13 @@ const request = async (options: AxiosRequestConfig): Promise<any> => {
   };
 
   try {
-    const res = await axios({ ...newOptions });
+    const res = await axios({ ...newOptions, ...{url} });
     return res.data;
   } catch (error) {
     const { status, statusText, data: errorText } = error.response;
 
     notification.error({
-      message: `http请求错误 ${status} ${options.url}`,
+      message: `http请求错误 ${status} ${url}`,
       description: codeMessage[status] || statusText
     });
 

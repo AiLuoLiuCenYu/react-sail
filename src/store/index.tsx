@@ -1,11 +1,11 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import axios from 'axios';
+import request from '../utils/request';
 import createReducer from './createReducer';
 
 const configureStore = () => {
   const store = createStore(createReducer(), {}, compose(
-    applyMiddleware(thunk.withExtraArgument({ axios })),
+    applyMiddleware(thunk.withExtraArgument({ request })),
     process.env.NODE_ENV === 'development' &&
     typeof window === 'object' &&
     typeof (window as any).devToolsExtension !== 'undefined'
