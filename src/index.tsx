@@ -1,22 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'mobx-react';
-import App from './App';
+import { Provider } from 'react-redux';
+import App from './pages/App';
+import store from './store/index';
 import registerServiceWorker from './registerServiceWorker';
-/* stores start */
-import rootStore from './stores/RootStore';
-/* stores end */
-
-const stores = {
-  rootStore
-};
 
 ReactDOM.render(
-  <Provider {...stores}>
-    <Router basename={process.env.PUBLIC_URL}>
-      <App rootStore={rootStore} />
-    </Router>
+  <Provider store={store}>
+    <App />
   </Provider>,
   document.getElementById('root') as HTMLElement
 );

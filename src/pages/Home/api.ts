@@ -1,4 +1,4 @@
-import request from '../utils/request';
+import request from '../../utils/request';
 
 const fetchUser = {
   query: () => request({ url: '/api/v0/user/1' }),

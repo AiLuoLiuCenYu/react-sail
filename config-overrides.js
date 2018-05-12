@@ -1,5 +1,5 @@
 /* config-overrides.js */
-const tsImportPluginFactory = require('ts-import-plugin')
+const tsImportPluginFactory = require('ts-import-plugin');
 const { getLoader } = require("react-app-rewired");
 const rewireLess = require('react-app-rewire-less');
 
